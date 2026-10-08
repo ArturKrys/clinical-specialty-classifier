@@ -1,0 +1,33 @@
+.DS_Store
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Model weights / large artifacts (GitHub rejects files > 100 MB) ---
+checkpoints/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.pkl
+*.joblib
+*.h5
+*.onnx
+# HuggingFace / NLTK caches if someone points them inside the repo
+.cache/
+nltk_data/
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

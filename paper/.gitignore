@@ -1,0 +1,75 @@
+# LaTeX auxiliary and intermediate files
+*.acn
+*.acr
+*.alg
+*.aux
+*.auxlock
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.idx
+*.ilg
+*.ind
+*.ist
+*.loa
+*.lof
+*.log
+*.lol
+*.lot
+*.maf
+*.mtc
+*.mtc[0-9]*
+*.mlf[0-9]*
+*.mlt[0-9]*
+*.nav
+*.out
+*.run.xml
+*.slf[0-9]*
+*.slt[0-9]*
+*.snm
+*.soc
+*.synctex
+*.synctex.gz
+*.tdo
+*.toc
+*.vrb
+*.xdy
+
+# Bibliography-generated files
+*.bbl
+*.brf
+
+# Glossaries and nomenclature intermediates
+*.nlo
+*.nls
+*.nlg
+
+# Temporary and backup files
+*.bak
+*.sav
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+
+# Editor and OS metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Common LaTeX build directories
+_build/
+build/
+out/
+
+# Keep the final compiled thesis output under version control.
+!/main.pdf
