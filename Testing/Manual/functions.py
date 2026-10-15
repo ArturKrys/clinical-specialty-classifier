@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.base import clone
 from sklearn.metrics import classification_report
+from nltk.stem import PorterStemmer
 
 # Building Input For Models
 def build_input_variants(df, columns):
@@ -33,6 +34,15 @@ def build_input_variants(df, columns):
     ).str.strip()
 
 
+# Preprocessing Functions
+stemmer = PorterStemmer()
+
+def preprocessing(text):
+    #if not isinstance(text, str):
+    #    return []
+    text = text.lower()
+    words = re.findall(r'\b[a-z0-9]+\b', text)
+    return [stemmer.stem(word) for word in words]
 
 
 def extract_headers(text):
@@ -77,6 +87,7 @@ def evaluate_input(X, name, classifier, classifier_name, train_indices, valid_in
         (
             "tfidf",
             TfidfVectorizer(
+                #tokenizer=preprocessing,
                 lowercase=True,
                 ngram_range=(1, 2),
                 min_df=2,
@@ -123,7 +134,8 @@ def evaluate_input_extra(
         (
             "tfidf",
             TfidfVectorizer(
-                lowercase=True,
+                tokenizer=preprocessing,
+                #lowercase=True,
                 ngram_range=(1, 2),
                 min_df=2,
                 sublinear_tf=True,
