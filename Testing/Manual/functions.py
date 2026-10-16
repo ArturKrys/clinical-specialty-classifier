@@ -6,6 +6,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.base import clone
 from sklearn.metrics import classification_report
 from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
 
 # Building Input For Models
 def build_input_variants(df, columns):
@@ -42,7 +43,8 @@ def preprocessing(text):
     #    return []
     text = text.lower()
     words = re.findall(r'\b[a-z0-9]+\b', text)
-    return [stemmer.stem(word) for word in words]
+    return words
+    #return [stemmer.stem(word) for word in words]
 
 
 def extract_headers(text):
@@ -65,7 +67,9 @@ def headers_for_model(headers):
         for header in headers
     )
 
-
+def headers_words(headers):
+    return " ".join(headers)
+ 
 # Processing Keywords
 def first_keyword(value):
     value = str(value).strip()
@@ -87,7 +91,6 @@ def evaluate_input(X, name, classifier, classifier_name, train_indices, valid_in
         (
             "tfidf",
             TfidfVectorizer(
-                #tokenizer=preprocessing,
                 lowercase=True,
                 ngram_range=(1, 2),
                 min_df=2,
@@ -134,8 +137,9 @@ def evaluate_input_extra(
         (
             "tfidf",
             TfidfVectorizer(
-                tokenizer=preprocessing,
-                #lowercase=True,
+                lowercase=True,
+                #analyzer='char_wb',
+                #ngram_range=(3,6),
                 ngram_range=(1, 2),
                 min_df=2,
                 sublinear_tf=True,
@@ -187,7 +191,7 @@ def evaluate_input_extra(
         "lowest_f1_label": labels[lowest_f1_index],
     }]
 
-def show_classification_report(y_true, predictions, labels):
+def show_classification_report(y_true, predictions, labels): # y_true is y_valid
     print(
         classification_report(
             y_true,
