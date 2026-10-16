@@ -236,6 +236,13 @@ def evaluate_input_extra(
         "lowest_f1_label": labels[lowest_f1_index],
     }]
 
+def fit_pipeline(X, y, classifier):
+    return Pipeline([
+        ("tfidf", TfidfVectorizer(lowercase=True, ngram_range=(1, 2), min_df=2,
+                                  sublinear_tf=True, max_features=50_000)),
+        ("classifier", clone(classifier)),
+    ]).fit(X, y)
+
 def show_classification_report(y_true, predictions, labels): # y_true is y_valid
     print(
         classification_report(
