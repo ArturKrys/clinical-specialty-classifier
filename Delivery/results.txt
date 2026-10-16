@@ -221,7 +221,7 @@ Gastroenterology
 Cardiovascular-Pulmonary
 Neurology
 Surgery
-Cardiovascular-Pulmonary
+General Medicine
 Radiology
 Ophthalmology
 Cardiovascular-Pulmonary
